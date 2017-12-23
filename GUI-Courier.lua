@@ -14,7 +14,7 @@ GUICourier.Locale = {
 		["chinese"] = ""
 	},
 	["useshield"] = {
-		["english"] = "Use shield if courier start lose HP",
+		["english"] = "Use shield if courier start losing HP",
 		["russian"] = "Использует щит если курьер начнёт терять здоровье",
 		["chinese"] = "如果信使開始失去惠普使用盾牌"
 	},

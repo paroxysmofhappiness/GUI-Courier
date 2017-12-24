@@ -147,7 +147,7 @@ function GUICourier.OnGameStart()
 	end
 	
 	for k, v in pairs(GUICourier.Initiated) do
-		if GUI.Exist(v) then
+		if GUI.Exist(GUICourier.IdentityCustom .. v .. "_main") then
 			GUI.DeInitialize(GUICourier.IdentityCustom .. v .. "_main")
 		end
 	end

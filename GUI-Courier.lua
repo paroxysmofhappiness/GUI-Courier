@@ -14,7 +14,7 @@ GUICourier.Locale = {
 		["chinese"] = ""
 	},
 	["useshield"] = {
-		["english"] = "Use shield if courier start losing HP",
+		["english"] = "Use shield if courier start lose HP",
 		["russian"] = "Использует щит если курьер начнёт терять здоровье",
 		["chinese"] = "如果信使開始失去惠普使用盾牌"
 	},
@@ -146,13 +146,6 @@ function GUICourier.OnGameStart()
 		GUI.Set(GUICourier.Identity .. "_ids", GUICourier.steamIDS)
 	end
 	
-	for k, v in pairs(GUICourier.Initiated) do
-		if GUI.Exist(GUICourier.IdentityCustom .. v .. "_main") then
-			GUI.DeInitialize(GUICourier.IdentityCustom .. v .. "_main")
-		end
-	end
-	
-	GUICourier.Initiated	= {}
 	GUICourier.Initialize()
 		
 	for k,v in pairs(Players.GetAll()) do
@@ -172,7 +165,13 @@ end
 
 function GUICourier.OnGameEnd()
 	GUICourier.Player				= nil
-	GUICourier.Initiated			= {}
+	for k, v in pairs(GUICourier.Initiated) do
+		if GUI.Exist(GUICourier.IdentityCustom .. v .. "_main") then
+			GUI.DeInitialize(GUICourier.IdentityCustom .. v .. "_main")
+		end
+	end
+	
+	GUICourier.Initiated	= {}
 	GUICourier.Hero					= nil
 	GUICourier.Courier				= nil
 	GUICourier.SendItems			= nil
@@ -196,7 +195,6 @@ function GUICourier.InitPlayer(name, id, identity)
 	GUI_TestSub["perfect_author"]	= 'paroxysm'
 	GUI_TestSub["cat"]				= GUICourier.IdentityCat
 	GUICourier.Initiated[id] = GUICourier.IdentityCustom .. identity .. "_main"
-
 	GUI.Initialize	(GUICourier.IdentityCustom .. identity .. "_main", GUI_TestSub)
 	GUI.AddMenuItem	(GUICourier.IdentityCustom .. identity .. "_main", GUICourier.IdentityCustom .. identity .. "_textbox", 'Commentary', GUI.MenuType.TextBox, "")
 	

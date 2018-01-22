@@ -285,6 +285,7 @@ function GUICourier.OnUpdate()
         GUICourier.Initialize()
     end
 	if GUICourier.Courier == nil then return end
+	if not Entity.IsAlive(GUICourier.Courier) then return end
 
 	if	GUICourier.Courier 
 		and NPC.IsCourier(GUICourier.Courier)
